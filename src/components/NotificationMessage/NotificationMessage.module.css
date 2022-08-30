@@ -1,0 +1,6 @@
+/* import styled from '@emotion/styled'; */
+
+.NotificationsMessage {
+    text-align: center;
+    color: #ff0000;
+}

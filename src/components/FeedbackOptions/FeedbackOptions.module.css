@@ -1,0 +1,11 @@
+/* import styled from '@emotion/styled'; */
+
+.FeedBackOptions {
+    display: flex;
+    justify-content: space-evenly;
+    padding-top: 10px;
+}
+
+.FeedBackBtn {
+    color: #002efd;
+}
