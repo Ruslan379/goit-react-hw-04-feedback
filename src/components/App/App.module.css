@@ -1,6 +1,10 @@
 /* import styled from '@emotion/styled'; */
 
 .FeedBack {
-    display: inline-block;
-    padding-left: 20px;
+    /* display: inline-block;
+    padding-left: 20px; */
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }

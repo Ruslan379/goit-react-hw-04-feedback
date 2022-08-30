@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 import { FeedbackOptions } from 'components/FeedbackOptions/FeedbackOptions';
 import { Statistics } from 'components/Statistics/Statistics';
@@ -14,17 +14,54 @@ import css from 'components/App/App.module.css' //todo = старый вариа
 
 export class App extends Component {
   
+  static defaultProps = {
+    initialGood: 0,
+    initialNeutral: 0,
+    initialBad: 0,
+
+    initialTotalFeedback: 0,
+    initialPositivePercentage: 0,
+  };
+
+
+  static propTypes = {
+    initialGood: PropTypes.number.isRequired,
+    initialNeutral: PropTypes.number.isRequired,
+    initialBad: PropTypes.number.isRequired,
+
+    initialTotalFeedback: PropTypes.number.isRequired,
+    initialPositivePercentage: PropTypes.number.isRequired,
+
+    good: PropTypes.number,
+    neutral: PropTypes.number,
+    bad: PropTypes.number,
+
+    total: PropTypes.number,
+    positivePercentage: PropTypes.number,
+
+    title: PropTypes.string,
+    message: PropTypes.string,
+
+    options: PropTypes.object,
+    onLeaveFeedback: PropTypes.func,
+  };
+
+
+
   state = {
-    good: 0,
-    neutral: 0,
-    bad: 0,
+    good: this.props.initialGood,
+    neutral: this.props.initialNeutral,
+    bad: this.props.initialBad,
+
+    // total: this.props.initialTotalFeedback,
+    // positivePercentage: this.props.initialPositivePercentage,
   };
 
 
   //! Дополнительная статистика feedBack
   feedBack = {
-    total: 0,
-    positivePercentage: 0,
+    total: this.props.initialTotalFeedback,
+    positivePercentage: this.props.initialPositivePercentage,
   }
 
 
@@ -39,6 +76,28 @@ export class App extends Component {
   };
 
 
+  //! good
+  goodIncrement = () => {
+    this.setState(prevState => ({
+      good: prevState.good + 1,
+    }));
+  };
+
+
+  //! neutral
+  neutralIncrement = () => {
+    this.setState(prevState => ({
+      neutral: prevState.neutral + 1,
+    }));
+  };
+
+
+  //! bad
+  badIncrement = () => {
+    this.setState(prevState => ({
+      bad: prevState.bad + 1,
+    }));
+  };
 
 
   //! Отображение общего количества собранных отзывов из всех категорий: 1-ый вариант
@@ -79,6 +138,7 @@ export class App extends Component {
 
 
 
+
   render() {
     const { good, neutral, bad } = this.state;
     // console.log("good: ", good); //!
@@ -112,18 +172,71 @@ export class App extends Component {
 
     return (
       <div className={css.FeedBack}>
+        
+          {/* <h1 className="FeedBack__title">Please leave feedback</h1> */}
 
+          {/* <div className="FeedBack__controls">
+            <button type="button" onClick={this.goodIncrement}>Good</button>
+            <button type="button" onClick={this.neutralIncrement}>Neutral</button>
+            <button type="button" onClick={this.badIncrement}>Bad</button>
+          </div> */}
+        
+          {/* <FeedbackOptions
+            good={this.goodIncrement}
+            neutral={this.neutralIncrement}
+            bad={this.badIncrement}
+  
+            onLeaveFeedback={"Please leave feedback"}
+          /> */}
+        
         <SectionTitle title="Please leave feedback">
   
           <FeedbackOptions
             options={this.state}
             onLeaveFeedback={this.onIncrement}
+
+            // good={this.goodIncrement}
+            // neutral={this.neutralIncrement}
+            // bad={this.badIncrement}
           />
+
+          {/* {Object.keys(this.state).map(key => (
+            <button key={key}>{key}</button>
+          ))} */}
 
         </SectionTitle>
 
+        {/* <FeedbackOptions
+          good={this.goodIncrement}
+          neutral={this.neutralIncrement}
+          bad={this.badIncrement}
+        /> */}
+
         
-        <SectionTitle title="Statistics">
+          {/* <div className="Statistics">
+            <h1 className="Statistics__title">Statistics</h1>
+
+            <p>Good: {good}</p>
+            <p>Neutral: {neutral}</p>
+            <p>Bad: {bad}</p>
+
+            <p>Total: {total}</p>
+            <p>Positive feedback: {positivePercentage}%</p>
+          </div> */}
+        
+          {/* <Statistics
+            good={good}
+            neutral={neutral}
+            bad={bad}
+            total={total}
+            positivePercentage={positivePercentage}
+          /> */}
+        
+        <SectionTitle
+          title="Statistics"
+          // total={total}
+          // NotificationMessage="There is no feedback"
+        >
           {total
             ?
             <Statistics
@@ -134,7 +247,9 @@ export class App extends Component {
               positivePercentage={positivePercentage}
             />
             :
-            <NotificationMessage message="There is no feedback" />}
+            <NotificationMessage
+              message="There is no feedback"
+            />}
           
         </SectionTitle>
       </div>
