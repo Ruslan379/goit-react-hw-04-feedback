@@ -51,6 +51,7 @@ export default function App() {
   total = good + neutral + bad; 
 
 
+
   //! Процент положительных отзывов:
   positivePercentage = ((good * 100) / total).toFixed(0);
   
@@ -61,7 +62,6 @@ export default function App() {
     neutral,
     bad,
   }
-
 
 
   console.log("State: ", allState); //!
