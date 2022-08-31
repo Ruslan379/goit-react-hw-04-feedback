@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import PropTypes from 'prop-types';
 
 import { FeedbackOptions } from 'components/FeedbackOptions/FeedbackOptions';
 import { Statistics } from 'components/Statistics/Statistics';
@@ -12,7 +11,7 @@ import css from 'components/App/App.module.css' //todo = старый вариа
 
 
 
-export class App extends Component {
+export default class App extends Component {
   
   state = {
     good: 0,
@@ -27,7 +26,7 @@ export class App extends Component {
 
 
 
-//! onIncrement - для ВСЕХ КНОПОК
+  //! onIncrement - Набор статистики для ВСЕХ КНОПОК
   onIncrement = event => {
     const btnName = (event.target.textContent).toLowerCase();
     this.setState(prevState => ({ [btnName]: (prevState[btnName] + 1) }));
@@ -42,7 +41,7 @@ export class App extends Component {
 
 
 
-//! Процент положительных отзывов:
+  //! Процент положительных отзывов:
   countPositiveFeedbackPercentage = () => {
     return Number((this.state.good / this.countTotalFeedback() * 100).toFixed(0));;
   };
