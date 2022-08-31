@@ -38,6 +38,12 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+//!
+
+//! State
+
+//! Имитация объекта State для FeedbackOptions
+
 //! Отображение общего количества собранных отзывов из всех категорий:
 
 //! Процент положительных отзывов:
