@@ -53,7 +53,7 @@ export default function App() {
 
 
   //! Процент положительных отзывов:
-  positivePercentage = ((good * 100) / total).toFixed(0);
+  positivePercentage = Number(((good * 100) / total).toFixed(0));
   
 
   //! Имитация объекта State для FeedbackOptions
