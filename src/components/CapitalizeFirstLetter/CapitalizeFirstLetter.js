@@ -1,4 +1,4 @@
-export const CapitalizeFirstLetter = (str) => {
+export default function CapitalizeFirstLetter(str) {
   return str.charAt(0).toUpperCase() + str.substring(1)
   // return str[0].toUpperCase() + str.substring(1)
 }
