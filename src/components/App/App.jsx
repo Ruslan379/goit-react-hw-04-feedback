@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import { useState  } from 'react';
 
 import { FeedbackOptions } from 'components/FeedbackOptions/FeedbackOptions';
 import { Statistics } from 'components/Statistics/Statistics';
@@ -10,72 +10,83 @@ import css from 'components/App/App.module.css' //todo = старый вариа
 
 
 
-
-export default class App extends Component {
+export default function App() {
   
-  state = {
-    good: 0,
-    neutral: 0,
-    bad: 0,
-  };
-
+  //! State
+  const [good, setGood] = useState(0);
+  const [neutral, setNeutral] = useState(0);
+  const [bad, setBad] = useState(0);
+  
 
   //! Дополнительная статистика feedBack
-  total = 0;
-  positivePercentage = 0;
-
+  let total = 0;
+  let positivePercentage = 0;
 
 
   //! onIncrement - Набор статистики для ВСЕХ КНОПОК
-  onIncrement = event => {
+  const onIncrement = event => {
     const btnName = (event.target.textContent).toLowerCase();
-    this.setState(prevState => ({ [btnName]: (prevState[btnName] + 1) }));
+
+    switch (btnName) {
+      case 'good':
+        setGood(prevState => prevState + 1);
+        break;
+
+      case 'neutral':
+        setNeutral(prevState => prevState + 1);
+        break;
+
+      case 'bad':
+        setBad(prevState => prevState + 1);
+        break;
+
+      default:
+        return;
+    }
   };
 
 
 
-  //! Отображение общего количества собранных отзывов из всех категорий: 
-  countTotalFeedback = () => {
-    return Object.values(this.state).reduce((accum, item) => accum + item, 0);
-  };
-
+  //! Отображение общего количества собранных отзывов из всех категорий:
+  total = good + neutral + bad; 
 
 
   //! Процент положительных отзывов:
-  countPositiveFeedbackPercentage = () => {
-    return Number((this.state.good / this.countTotalFeedback() * 100).toFixed(0));;
-  };
+  positivePercentage = ((good * 100) / total).toFixed(0);
+  
+
+  //! Имитация объекта State для FeedbackOptions
+  const allState = {
+    good,
+    neutral,
+    bad,
+  }
 
 
-  render() {
-    const { good, neutral, bad } = this.state;
 
-    //! Отображение общего количества собранных отзывов из всех категорий:
-    this.total = this.countTotalFeedback(); //* 2-ой вариант
-    
-    //! Процент положительных отзывов:
-    this.positivePercentage = this.countPositiveFeedbackPercentage(); 
+  console.log("State: ", allState); //!
+  
 
     return (
       <div className={css.FeedBack}>
 
         <SectionTitle title="Please leave feedback">
           <FeedbackOptions
-            options={this.state}
-            onLeaveFeedback={this.onIncrement}
+            options={allState} 
+            onLeaveFeedback={onIncrement}
           />
         </SectionTitle>
 
         
         <SectionTitle title="Statistics">
-          {this.total
+          {total
             ?
             <Statistics
               good={good}
               neutral={neutral}
               bad={bad}
-              total={this.total}
-              positivePercentage={this.positivePercentage}
+              total={total}
+              positivePercentage={positivePercentage}
             />
             :
             <NotificationMessage message="There is no feedback" />}
@@ -83,4 +94,4 @@ export default class App extends Component {
       </div>
     );
   }
-}
+
