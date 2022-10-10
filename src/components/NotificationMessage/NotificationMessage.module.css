@@ -1,6 +1,8 @@
 /* import styled from '@emotion/styled'; */
 
 .NotificationsMessage {
+    font-size: 20px;
+    font-weight: bold;
     text-align: center;
     color: #ff0000;
 }

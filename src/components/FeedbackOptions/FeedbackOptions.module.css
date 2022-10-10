@@ -9,3 +9,7 @@
 .FeedBackBtn {
     color: #002efd;
 }
+
+.CapitalizeFirstLetterKey {
+    text-transform: capitalize;
+}

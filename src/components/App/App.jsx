@@ -18,10 +18,6 @@ export default function App() {
   const [bad, setBad] = useState(0);
   
 
-  //! Дополнительная статистика feedBack
-  let total = 0;
-  let positivePercentage = 0;
-
 
   //! onIncrement - Набор статистики для ВСЕХ КНОПОК
   const onIncrement = event => {
@@ -48,12 +44,12 @@ export default function App() {
 
 
   //! Отображение общего количества собранных отзывов из всех категорий:
-  total = good + neutral + bad; 
+  const total = good + neutral + bad; 
 
 
 
   //! Процент положительных отзывов:
-  positivePercentage = Number(((good * 100) / total).toFixed(0));
+  const positivePercentage = Number(((good * 100) / total).toFixed(0));
   
 
   //! Имитация объекта State для FeedbackOptions

@@ -6,9 +6,7 @@ import css from 'components/NotificationMessage/NotificationMessage.module.css' 
 
 export const NotificationMessage = ({ message }) => {
   return (
-    <div>
-      <h3 className={css.NotificationsMessage}>{ message }</h3>
-    </div>
+    <p className={css.NotificationsMessage}>{ message }</p>
   );
 }
 

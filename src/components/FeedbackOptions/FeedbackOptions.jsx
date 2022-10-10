@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import CapitalizeFirstLetter from 'components/CapitalizeFirstLetter/CapitalizeFirstLetter';
-
+// import CapitalizeFirstLetter from 'services/CapitalizeFirstLetter'; //? ---
 import css from 'components/FeedbackOptions/FeedbackOptions.module.css' //todo = старый вариант импорта стилей
 
 
@@ -12,8 +11,10 @@ export const FeedbackOptions = ({ options, onLeaveFeedback }) => (
       <button key={key}
         type="button"
         className={css.FeedBackBtn}
-        onClick={onLeaveFeedback}>
-        {CapitalizeFirstLetter(key)}
+        onClick={onLeaveFeedback}
+      >
+        {/* {CapitalizeFirstLetter(key)} //? --- */} 
+        <span className={css.CapitalizeFirstLetterKey}>{key}</span>
       </button>
     ))} 
 
