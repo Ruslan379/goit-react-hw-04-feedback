@@ -6,7 +6,7 @@ import css from 'components/SectionTitle/SectionTitle.module.css' //todo = ст�
 export const SectionTitle = ({ title, children }) => {
   return (
     <div>
-      {<h1 className={css.SectionsTitle}>{title}</h1>}
+      <h1 className={css.SectionsTitle}>{title}</h1>
       {children}
     </div>
   );
